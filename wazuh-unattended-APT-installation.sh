@@ -1,9 +1,6 @@
 echo install Serverside WAZUH-Suricata Reworked for APT based distros Linux ubuntu20.04 LTS and Mint 20.x Debian11
 mkdir -p /download
 pushd /download
-apt-get update -y
-apt-get upgrade -y
-apt-get dist-upgrade -y
 ## centos only  echo Unattended installation all-in-one deployment
 ## for centos   curl -so ~/unattended-installation.sh https://packages.wazuh.com/resources/4.2/open-distro/unattended-installation/unattended-installation.sh && bash ~/unattended-installation.sh
 echo wazuh server all-in-one manual APT-distro installation
