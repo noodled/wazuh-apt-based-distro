@@ -8,10 +8,15 @@ Log4J workaround Dec2021 included
 
 order to run
 
-wazuh-unattended-APT-installation.sh
-owlhsuricata508.sh
-owlhzeek420.sh
-set-ufw-4-elk.sh
+ wazuh-unattended-APT-installation.sh
+ 
+ owlhsuricata508.sh
+ 
+ owlhzeek420.sh
+ 
+ set-ufw-4-elk.sh
+ 
+ 
 ## nok owlhzeek.sh
 
 
