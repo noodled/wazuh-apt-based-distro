@@ -24,3 +24,5 @@ fi
 mkdir /etc/suricata/rules
 mkdir -p /var/lib/suricata/rules
 touch /var/lib/suricata/rules/suricata.rules
+echo run suricate test 
+echo /usr/bin/suricata -c /etc/suricata/suricata.yaml -i enp0s3
