@@ -1,20 +1,23 @@
 echo install Serverside WAZUH-Suricata Reworked for APT based distros Linux ubuntu20.04 LTS and Mint 20.x Debian11
 mkdir -p /download
 pushd /download
+apt-get update -y
+apt-get upgrade -y
+apt-get dist-upgrade -y
 ## centos only  echo Unattended installation all-in-one deployment
 ## for centos   curl -so ~/unattended-installation.sh https://packages.wazuh.com/resources/4.2/open-distro/unattended-installation/unattended-installation.sh && bash ~/unattended-installation.sh
 echo wazuh server all-in-one manual APT-distro installation
-curl https://packages.wazuh.com/resources/4.2/open-distro/unattended-installation/unattended-installation.sh -so unattended-installation.sh
-apt install curl apt-transport-https unzip wget libcap2-bin software-properties-common lsb-release gnupg
+## curl https://packages.wazuh.com/resources/4.2/open-distro/unattended-installation/unattended-installation.sh -so unattended-installation.sh
+apt install -y curl apt-transport-https unzip wget libcap2-bin software-properties-common lsb-release gnupg
 curl -s https://packages.wazuh.com/key/GPG-KEY-WAZUH | apt-key add -
 echo "deb https://packages.wazuh.com/4.x/apt/ stable main" | tee -a /etc/apt/sources.list.d/wazuh.list
-apt-get update
-apt-get install wazuh-manager
+apt-get update -y
+apt-get install -y wazuh-manager
 systemctl daemon-reload
 systemctl enable wazuh-manager
 systemctl start wazuh-manager
-systemctl status wazuh-manager
-apt install elasticsearch-oss opendistroforelasticsearch
+systemctl status wazuh-manager | grep -e'active (running)'
+apt install -y elasticsearch-oss opendistroforelasticsearch
 curl -so /etc/elasticsearch/elasticsearch.yml https://packages.wazuh.com/resources/4.2/open-distro/elasticsearch/7.x/elasticsearch_all_in_one.yml
 curl -so /usr/share/elasticsearch/plugins/opendistro_security/securityconfig/roles.yml https://packages.wazuh.com/resources/4.2/open-distro/elasticsearch/roles/roles.yml
 curl -so /usr/share/elasticsearch/plugins/opendistro_security/securityconfig/roles_mapping.yml https://packages.wazuh.com/resources/4.2/open-distro/elasticsearch/roles/roles_mapping.yml
@@ -48,7 +51,7 @@ systemctl daemon-reload
 systemctl enable filebeat
 systemctl start filebeat
 filebeat test output
-apt-get install opendistroforelasticsearch-kibana
+apt-get install -y opendistroforelasticsearch-kibana
 curl -so /etc/kibana/kibana.yml https://packages.wazuh.com/resources/4.2/open-distro/kibana/7.x/kibana_all_in_one.yml
 mkdir /usr/share/kibana/data
 chown -R kibana:kibana /usr/share/kibana/data
