@@ -16,7 +16,6 @@ order to run
  
  set-ufw-4-elk.sh
  
- 
-## nok owlhzeek.sh
+
 
 
