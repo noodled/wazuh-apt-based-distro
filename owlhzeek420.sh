@@ -2,21 +2,21 @@
 # Main packages 
 sudo apt-get install -y cmake make gcc g++ flex bison libpcap-dev libssl-dev python-dev swig zlib1g-dev git libnss3-dev liblua5.1-dev libnspr4-dev liblz4-dev python3-yaml
 mkdir -p /download
-cd /download
+pushd /download
 apt-get install -y python3-dev libpcap0.8-dev libcaf-dev librocksdb-dev
+apt-get install -y ssmtp
 wget "https://download.zeek.org/zeek-4.2.0.tar.gz" -O zeek-4.2.0.tar.gz
 #wget https://old.zeek.org/downloads/zeek-3.0.3.tar.gz
 #tar xzvf zeek-3.0.3.tar.gz
 tar xzvf zeek-4.2.0.tar.gz
 cd /download/zeek-4.2.0
-rm -f build/CMakeCache.txt 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 rm -f build/CMakeCache.txt
 make distclean
 ./configure
-make -j ($NUMPROC/2)
-# ok make
+##make -j $NUMPROC
+make
 sudo make install
 #checkinstall
 
@@ -48,6 +48,8 @@ redef record SSH::Info += {
 };
 EOF
 
+echo adjusting eth0 interface
+sed -i 's/interface=eth0/interface=enp0s3/g' /usr/local/zeek/etc/node.cfg
 /usr/local/zeek/bin/zeekctl deploy
 
 (sudo crontab -l ; echo "*/5 * * * * /usr/local/zeek/bin/zeekctl cron ") | crontab -
