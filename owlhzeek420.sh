@@ -50,6 +50,12 @@ EOF
 
 echo adjusting eth0 interface
 sed -i 's/interface=eth0/interface=enp0s3/g' /usr/local/zeek/etc/node.cfg
+echo threat intel source
+cd /usr/local/zeek/share/zeek/site
+git clone https://github.com/CriticalPathSecurity/Zeek-Intelligence-Feeds.git
+ls -al /usr/local/zeek/share/zeek/site/Zeek-Intelligence-Feeds
+echoe -e '@load Zeek-Intelligence-Feeds' >> /usr/local/zeek/share/zeek/site/local.zeek
+echo activating zeek ids 
 /usr/local/zeek/bin/zeekctl deploy
 
 (sudo crontab -l ; echo "*/5 * * * * /usr/local/zeek/bin/zeekctl cron ") | crontab -
