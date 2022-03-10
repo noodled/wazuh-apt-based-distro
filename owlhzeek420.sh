@@ -4,7 +4,7 @@ sudo apt-get install -y cmake make gcc g++ flex bison libpcap-dev libssl-dev pyt
 mkdir -p /download
 cd /download
 apt-get install -y python3-dev libpcap0.8-dev libcaf-dev librocksdb-dev
-wget https://download.zeek.org/zeek-4.2.0.tar.gz
+wget "https://download.zeek.org/zeek-4.2.0.tar.gz" -O zeek-4.2.0.tar.gz
 #wget https://old.zeek.org/downloads/zeek-3.0.3.tar.gz
 #tar xzvf zeek-3.0.3.tar.gz
 tar xzvf zeek-4.2.0.tar.gz
@@ -14,9 +14,7 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 rm -f build/CMakeCache.txt
 make distclean
-## ./configure --with-rocksdb=/usr/local/lib/librocksdb.so
 ./configure
-## not ok for vm  make -j $NUMPROC
 make -j ($NUMPROC/2)
 # ok make
 sudo make install
