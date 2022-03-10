@@ -8,7 +8,7 @@ ufw disable
 apt-get update -y
 apt-get upgrade -y
 apt-get dist-upgrade -y
-apt-get install build-essential gcc g++ make cmake flex bison mc nmap openssh-server fail2ban dos2unix
+apt-get install -y build-essential gcc g++ make cmake flex bison mc nmap openssh-server fail2ban dos2unix
 echo -e "withing 3 min WAZUH Suricata owlhzeek will install" > inst-fullwazuh.sh
 echo -e "This can be very timeconsuming for the compile of Zeek" >> inst-fullwazuh.sh
 echo -e "sleep 180" >> inst-fullwazuh.sh
