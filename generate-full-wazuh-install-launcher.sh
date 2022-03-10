@@ -8,7 +8,7 @@ ufw disable
 apt-get update -y
 apt-get upgrade -y
 apt-get dist-upgrade -y
-apt-get install build-essential gcc g++ make cmake flex bison mc nmap openssh-server fail2ban
+apt-get install build-essential gcc g++ make cmake flex bison mc nmap openssh-server fail2ban dos2unix
 echo -e "withing 3 min WAZUH Suricata owlhzeek will install" > inst-fullwazuh.sh
 echo -e "This can be very timeconsuming for the compile of Zeek" >> inst-fullwazuh.sh
 echo -e "sleep 180" >> inst-fullwazuh.sh
@@ -16,8 +16,8 @@ echo -e "wazuh-unattended-APT-installation.sh" >> inst-fullwazuh.sh
 echo -e "owlhsuricata508.sh" >> inst-fullwazuh.sh
 echo -e "owlhzeek420.sh" >> inst-fullwazuh.sh
 echo -e "set-ufw-4-elk.sh" >> inst-fullwazuh.sh
-dos2unix *.sh
-chmod og+rx *.sh
+dos2unix /download/*.sh
+chmod og+rx /download/*.sh
 echo it is recommended to reboot now
 echo This machines curreny IP addr is :
 hostname -I
